@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Downloads</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: rgba(255, 255, 255, 0.06);
+      --panel-strong: rgba(255, 255, 255, 0.10);
+      --text: rgba(255, 255, 255, 0.92);
+      --muted: rgba(255, 255, 255, 0.70);
+      --border: rgba(255, 255, 255, 0.14);
+      --primary: #60a5fa;
+      --primary-2: #93c5fd;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --max: 980px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f6f8fc;
+        --panel: rgba(0, 0, 0, 0.04);
+        --panel-strong: rgba(0, 0, 0, 0.06);
+        --text: rgba(15, 23, 42, 0.92);
+        --muted: rgba(15, 23, 42, 0.68);
+        --border: rgba(15, 23, 42, 0.12);
+        --primary: #2563eb;
+        --primary-2: #1d4ed8;
+        --shadow: 0 18px 50px rgba(2, 6, 23, 0.10);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% 10%, rgba(96, 165, 250, 0.25), transparent 60%),
+        radial-gradient(900px 600px at 85% 0%, rgba(147, 197, 253, 0.18), transparent 60%),
+        radial-gradient(900px 600px at 60% 90%, rgba(99, 102, 241, 0.16), transparent 60%),
+        var(--bg);
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 18px 44px;
+    }
+
+    header {
+      display: grid;
+      gap: 10px;
+      padding: 18px;
+      background: linear-gradient(180deg, var(--panel-strong), var(--panel));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(20px, 2.7vw, 30px);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    main {
+      margin-top: 16px;
+      padding: 16px;
+      background: linear-gradient(180deg, var(--panel-strong), var(--panel));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+
+    .card {
+      grid-column: span 12;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      display: grid;
+      gap: 10px;
+    }
+
+    @media (min-width: 720px) {
+      .card { grid-column: span 6; }
+    }
+
+    .row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .file {
+      min-width: 0;
+      display: grid;
+      gap: 4px;
+    }
+
+    .name {
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .btn {
+      flex: 0 0 auto;
+      appearance: none;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(96,165,250,0.22), rgba(96,165,250,0.10));
+      color: var(--text);
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-size: 13px;
+      text-decoration: none;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .btn:hover { border-color: rgba(96, 165, 250, 0.55); }
+    .btn:focus { outline: 2px solid rgba(96, 165, 250, 0.65); outline-offset: 2px; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);
+      flex: 0 0 auto;
+    }
+
+    footer {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      padding: 0 6px;
+    }
+
+    .hint {
+      margin-top: 10px;
+      padding: 12px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px dashed var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Python Exercises — Downloads</h1>
+      <p class="sub">Click “Download” to save each file. This page works best when opened via a local server so the browser can download files correctly.</p>
+      <div class="badge"><span class="dot" aria-hidden="true"></span><span>15 files</span></div>
+    </header>
+
+    <main>
+      <div class="grid" role="list">
+        <div class="card" role="listitem">
+          <div class="row">
+            <div class="file">
+              <div class="name">01_sum_and_product_of_two_numbers.py</div>
+              <div class="meta">Exercise 01</div>
+            </div>
+            <a class="btn" href="01_sum_and_product_of_two_numbers.py" download>Download</a>
+          </div>
+        </div>
+
+        <div class="card" role="listitem">
+          <div class="row">
+            <div class="file">
+              <div class="name">02_area_and_perimeter_of_a_rectangle.py</div>
+              <div class="meta">Exercise 02</div>
+            </div>
+            <a class="btn" href="02_area_and_perimeter_of_a_rectangle.py" download>Download</a>
+          </div>
+        </div>
+
+        <div class="card" role="listitem">
+          <div class="row">
+            <div class="file">
+              <div class="name">03_sum_and_average_of_n_numbers.py</div>
+              <div class="meta">Exercise 03</div>
+            </div>
+            <a class="btn" href="03_sum_and_average_of_n_numbers.py" download>Download</a>
+          </div>
+        </div>
+
+        <div class="card" role="listitem">
+          <div class="row">
+            <div class="file">
+              <div class="name">04_check_even_or_odd.py</div>
+              <div class="meta">Exercise 04</div>
+            </div>
+            <a class="btn" href="04_check_even_or_odd.py" download>Download</a>
+          </div>
+        </div>
+
+        <div class="card" role="listitem">
+          <div class="row">
+            <div class="file">
+              <div class="name">05_count_10_to_1_using_while_loop.py</div>
+              <div class="meta">Exercise 05</div>
+            </div>
+            <a class="btn" href="05_count_10_to_1_using_while_loop.py" download>Download</a>
+          </div>
+        </div>
+
+        <div class="card" role="listitem">
+          <div class="row">
+            <div class="file">
+              <div class="name">06_square_of_first_3_natural_numbers.py</div>
+              <div class="meta">Exercise 06</div>
+            </div>
+            <a class="btn" href="06_square_of_first_3_natural_numbers.py" download>Download</a>
+          </div>
+        </div>
+
+        <div class="card" role="listitem">
+          <div class="row">
+            <div class="file">
+              <div class="name">07_swap_two_variables.py</div>
+              <div class="meta">Exercise 07</div>
+            </div>
+            <a class="btn" href="07_swap_two_variables.py" download>Download</a>
+          </div>
+        </div>
+
+        <div class="card" role="listitem">
+          <div class="row">
+            <div class="file">
+              <div class="name">08_celsius_to_fahrenheit.py</div>
+              <div class="meta">Exercise 08</div>
+            </div>
+            <a class="btn" href="08_celsius_to_fahrenheit.py" download>Download</a>
+          </div>
+        </div>
+
+        <div class="card" role="listitem">
+          <div class="row">
+            <div class="file">
+              <div class="name">09_two_raised_to_power_x.py</div>
+              <div class="meta">Exercise 09</div>
+            </div>
+            <a class="btn" href="09_two_raised_to_power_x.py" download>Download</a>
+          </div>
+        </div>
+
+        <div class="card" role="listitem">
+          <div class="row">
+            <div class="file">
+              <div class="name">10_concatenate_two_lists.py</div>
+              <div class="meta">Exercise 10</div>
+            </div>
+            <a class="btn" href="10_concatenate_two_lists.py" download>Download</a>
+          </div>
+        </div>
+
+        <div class="card" role="listitem">
+          <div class="row">
+            <div class="file">
+              <div class="name">11_append_value_to_existing_list.py</div>
+              <div class="meta">Exercise 11</div>
+            </div>
+            <a class="btn" href="11_append_value_to_existing_list.py" download>Download</a>
+          </div>
+        </div>
+
+        <div class="card" role="listitem">
+          <div class="row">
+            <div class="file">
+              <div class="name">12_extract_specific_elements_from_array.py</div>
+              <div class="meta">Exercise 12</div>
+            </div>
+            <a class="btn" href="12_extract_specific_elements_from_array.py" download>Download</a>
+          </div>
+        </div>
+
+        <div class="card" role="listitem">
+          <div class="row">
+            <div class="file">
+              <div class="name">13_list_operations_create_append_extend_remove.py</div>
+              <div class="meta">Exercise 13</div>
+            </div>
+            <a class="btn" href="13_list_operations_create_append_extend_remove.py" download>Download</a>
+          </div>
+        </div>
+
+        <div class="card" role="listitem">
+          <div class="row">
+            <div class="file">
+              <div class="name">14_display_names_with_length_four.py</div>
+              <div class="meta">Exercise 14</div>
+            </div>
+            <a class="btn" href="14_display_names_with_length_four.py" download>Download</a>
+          </div>
+        </div>
+
+        <div class="card" role="listitem">
+          <div class="row">
+            <div class="file">
+              <div class="name">15_convert_odd_to_even_by_adding_1.py</div>
+              <div class="meta">Exercise 15</div>
+            </div>
+            <a class="btn" href="15_convert_odd_to_even_by_adding_1.py" download>Download</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hint">
+        If you open this file directly (double-click), some browsers may block downloads for local files.
+        If that happens, run a local server in this folder (example): <span style="font-family: var(--mono)">python -m http.server</span> and open <span style="font-family: var(--mono)">http://localhost:8000</span>.
+      </div>
+    </main>
+
+    <footer>
+      Tip: Keep this <span style="font-family: var(--mono)">index.html</span> in the same folder as the .py files so the links stay valid.
+    </footer>
+  </div>
+</body>
+</html>
